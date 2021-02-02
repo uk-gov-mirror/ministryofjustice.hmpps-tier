@@ -19,19 +19,26 @@ https://app.circleci.com/pipelines/github/ministryofjustice/hmpps-tier
 In order to run the service locally you need to add HMPPS auth token to your requests
 
 #### How to start locally 
-##### Against AWS
+
+The application listens to an SQS queue, and makes calls to [community-api](https://github.com/ministryofjustice/community-api) and [assessments-api](https://github.com/ministryofjustice/offender-assessments-api-kotlin). 
+
+##### Against real APIs and AWS
+
+Note that this will consume messages from the SQS queue.
+
 Make sure you have the necessary Access key and secret set as environment variables. 
-You can do that by running this command before starting the app
+You can do that for the AWS development environment  by running this command before starting the app
 
 ```eval $(cloud-platform decode-secret -n hmpps-tier-dev -s hmpps-tier-offender-events-sqs-instance-output --export-aws-credentials)```
 
-This uses SPRING_PROFILES_ACTIVE=dev which has an in-memory database.
+Set community:endpoint:url and assessment:endpoint:url to suitable values 
 
-```./gradlew bootRun```
+##### Against localstack and local versions of community-api and assessments-api
 
-##### Against localstack
-
-```docker-compose-up```
+```
+docker-compose up
+./gradlew bootRun
+```
 
 Localstack has SQS and SNS. The queue and topic are set up and populated in `setup-sqs.sh` You can access them from the command line as per the following example
 

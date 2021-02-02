@@ -7,3 +7,11 @@ aws:
   access-key-id: key
   secret-access-key: secret
   region: eu-west-2
+
+community:
+  endpoint:
+    url: https://localhost:8081
+
+assessment:
+  endpoint:
+    url: https://localhost:8082

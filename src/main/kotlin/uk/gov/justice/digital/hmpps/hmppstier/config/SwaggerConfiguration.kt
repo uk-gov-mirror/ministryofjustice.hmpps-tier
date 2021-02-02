@@ -67,10 +67,10 @@ class SwaggerConfiguration(@Autowired val applicationContext: ApplicationContext
 
   private fun securityScheme(): SecurityScheme {
     val grantType = AuthorizationCodeGrantBuilder()
-      .tokenEndpoint(TokenEndpoint("http://localhost:9090/auth/oauth" + "/token", "oauthtoken"))
+      .tokenEndpoint(TokenEndpoint("http://localhost:9091/auth/oauth" + "/token", "oauthtoken"))
       .tokenRequestEndpoint(
         TokenRequestEndpoint(
-          "http://localhost:9090/auth/oauth" + "/authorize",
+          "http://localhost:9091/auth/oauth" + "/authorize",
           "swagger-client",
           "clientsecret"
         )
